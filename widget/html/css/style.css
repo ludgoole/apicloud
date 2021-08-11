@@ -1,0 +1,56 @@
+html,body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: calc(100vw / 750 * 100);
+}
+/* body 也增加宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小 */
+body {
+  min-width: 360px;
+  font-size: 20px;
+}
+.landing-page {
+  position: relative;
+  height: 100%;
+  background: url(../res/img/bg.jpg) center center;
+  background-size: cover;
+}
+.landing-page-header {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+}
+.landing-page-btns {
+  margin-top: 4rem;
+}
+.landing-page-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+.landing-page-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  background: rgba(0,0,0,.6);
+}
+.landing-page-tip {
+  margin: 40px 20px 0 auto;
+  padding: 10px;
+  border-radius: 8px;
+  width: 140px;
+  background: #fff;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 20px;
+  color: #000;
+}
+.landing-page-tip p {
+  margin: 0;
+}
