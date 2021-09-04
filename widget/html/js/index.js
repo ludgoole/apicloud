@@ -17,8 +17,8 @@ function isInWechat() {
 function copyText (text) {
   var textArea = document.createElement("textarea");
   textArea.style['position'] = 'absolute'
-  textArea.style['top'] = '0'
-  textArea.style['left'] = '0'
+  textArea.style['bottom'] = '0'
+  textArea.style['left'] = '-100%'
   textArea.style['zIndex'] = -1
   textArea.value = text;
   document.body.appendChild(textArea);
@@ -43,7 +43,6 @@ function toast(msg) {
 }
 
 function androidDownload() {
-  console.log(123)
   if (!isInWechat()) {
     $('.landing-page-container-mask').show()
     $('#mask').show()
@@ -65,34 +64,39 @@ function iosDownload() {
   });
 }
 
-// 赋值bonusCode
-$('#bonusCode').val(bonusCode)
-
-// 复制bonusCode
-$('#copyBtn').on('click', function() {
-  var text = $('#bonusCode').val()
-  var success = copyText(text)
-  toast(success ? '复制成功' : '复制失败')
-})
-
-// 下载应用
-$('.download-btn').on('click', function() {
+$(function() {
+  // 置顶
   window.scrollTo(0,0)
-  if (isAndroid()) {
-    androidDownload()
-  } else {
-    iosDownload()
-  }
-})
 
-// 微信引导
-$('#mask').on('click', function() {
-  $('.landing-page-container-mask').hide()
-  $('#mask').hide()
-})
-
-// 关闭
-$('#close').on('click', function() {
-  $('.landing-page-container-mask').hide()
-  $('.landing-page-bonus ').hide()
+  // 赋值bonusCode
+  $('#bonusCode').val(bonusCode)
+  
+  // 复制bonusCode
+  $('#copyBtn').on('click', function() {
+    var text = $('#bonusCode').val()
+    var success = copyText(text)
+    toast(success ? '复制成功' : '复制失败')
+  })
+  
+  // 下载应用
+  $('.download-btn').on('click', function() {
+    window.scrollTo(0,0)
+    if (isAndroid()) {
+      androidDownload()
+    } else {
+      iosDownload()
+    }
+  })
+  
+  // 微信引导
+  $('#mask').on('click', function() {
+    $('.landing-page-container-mask').hide()
+    $('#mask').hide()
+  })
+  
+  // 关闭
+  $('#close').on('click', function() {
+    $('.landing-page-container-mask').hide()
+    $('.landing-page-bonus ').hide()
+  })
 })
