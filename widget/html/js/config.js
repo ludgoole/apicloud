@@ -18,4 +18,4 @@ const iphoneOptions = {
   appstore: 'https://itunes.apple.com/cn/app/id1383186862',
   // 打开失败跳转地址
   fallback: '//a.app.qq.com/o/simple.jsp?pkgname=com.youku.shortvideo'
-};
+};   
