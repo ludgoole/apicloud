@@ -19,17 +19,14 @@ function copyText (text) {
   textArea.style['position'] = 'absolute'
   textArea.style['top'] = '0'
   textArea.style['left'] = '0'
-  textArea.style['display'] = 'none'
+  textArea.style['zIndex'] = -1
   textArea.value = text;
   document.body.appendChild(textArea);
   textArea.focus();
   textArea.select();
 
   try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    // console.log('success to copy', msg);
-    return msg
+    return document.execCommand('copy');
   } catch (err) {
     console.error('Fallback: Oops, unable to copy', err);
   }
@@ -48,10 +45,11 @@ function toast(msg) {
 function androidDownload() {
   console.log(123)
   if (!isInWechat()) {
+    $('.landing-page-container-mask').show()
     $('#mask').show()
   }
 
-  const callLib = new CallApp(androidOptions);
+  var callLib = new CallApp(androidOptions);
 
   callLib.open({
     param: {},
@@ -59,7 +57,7 @@ function androidDownload() {
   });
 }
 function iosDownload() {
-  const callLib = new CallApp(iphoneOptions);
+  var callLib = new CallApp(iphoneOptions);
 
   callLib.open({
     param: {},
@@ -67,15 +65,19 @@ function iosDownload() {
   });
 }
 
-// 复制
+// 赋值bonusCode
+$('#bonusCode').val(bonusCode)
+
+// 复制bonusCode
 $('#copyBtn').on('click', function() {
   var text = $('#bonusCode').val()
-  var msg = copyText(text)
-  toast(msg === 'successful' ? '复制成功' : '复制失败')
+  var success = copyText(text)
+  toast(success ? '复制成功' : '复制失败')
 })
 
-// 下载
-$('#downloadBtn').on('click', function() {
+// 下载应用
+$('.download-btn').on('click', function() {
+  window.scrollTo(0,0)
   if (isAndroid()) {
     androidDownload()
   } else {
@@ -85,10 +87,12 @@ $('#downloadBtn').on('click', function() {
 
 // 微信引导
 $('#mask').on('click', function() {
+  $('.landing-page-container-mask').hide()
   $('#mask').hide()
 })
 
 // 关闭
 $('#close').on('click', function() {
+  $('.landing-page-container-mask').hide()
   $('.landing-page-bonus ').hide()
 })

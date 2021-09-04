@@ -1,4 +1,4 @@
-const androidOptions = {
+var androidOptions = {
   // app协议名
   scheme: {
     protocol: 'taobao://'
@@ -9,7 +9,7 @@ const androidOptions = {
   fallback: '//a.app.qq.com/o/simple.jsp?pkgname=com.youku.shortvideo'
 };
 
-const iphoneOptions = {
+var iphoneOptions = {
   // app协议名
   scheme: {
     protocol: 'taobao://'
@@ -19,3 +19,5 @@ const iphoneOptions = {
   // 打开失败跳转地址
   fallback: '//a.app.qq.com/o/simple.jsp?pkgname=com.youku.shortvideo'
 };   
+
+var bonusCode = 'Code: 123456789'
